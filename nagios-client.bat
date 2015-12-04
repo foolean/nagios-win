@@ -32,6 +32,10 @@ SET SENDNSCA=%NAGIOSCLIENTDIR%\bin\send_nsca.exe
 REM # Path to the check-system.bat script
 SET CHECKSYSTEM=%NAGIOSCLIENTDIR%\check-system.bat
 
-REM # Run the checks and send the data
-"%CHECKSYSTEM%" /N | "%SENDNSCA%" -H "%NAGIOSSERVER%" -p %NSCAPORT% -d " " -c "%SENDNSCACFG%"
+REM # Output file
+SET OUTPUTFILE=%NAGIOSCLIENTDIR%\nagios.out
 
+REM # Run the checks and send the data
+CALL "%CHECKSYSTEM%" /N > "%OUTPUTFILE%"
+type "%OUTPUTFILE%" | "%SENDNSCA%" -H "%NAGIOSSERVER%" -p %NSCAPORT% -d " " -c "%SENDNSCACFG%"
+del "%OUTPUTFILE%"
