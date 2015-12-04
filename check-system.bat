@@ -30,7 +30,7 @@ SET CSCRIPT=CSCRIPT //NOLOGO
 
 REM # Calling this script with the /N argument will
 REM # cause output to be formatted for send_nsca.
-IF "%1" == "/N" THEN SET NSCA=/N
+IF "%1" == "/N" SET NSCA=/N
 
 REM #############################################################
 REM #                    Run our checks                         #
